@@ -6,6 +6,7 @@ export const FETCH_NOTICATIONS = 'fetch_notifications';
 export const CREATE_TIMED_NOTIFICATION_CLICK = 'create_timed_notification_click';
 export const CREATE_TIMED_NOTIFICATION_SUCCESS = 'create_timed_notification_success';
 export const CREATE_TIMED_NOTIFICATION_FAILED = 'create_timed_notification_failed';
+export const CREATE_TIMED_NOTIFICATION_FINALLY = 'create_timed_notification_finally';
 
 export const CREATE_NOW_NOTIFICATION_CLICK = 'create_now_notification_click';
 export const CREATE_NOW_NOTIFICATION_SUCCESS = 'create_now_notification_success';
@@ -48,6 +49,10 @@ export const createTimedNotification = (title, description, date, pageName) => {
             dispatch({
                 type: CREATE_TIMED_NOTIFICATION_SUCCESS,
                 payload: result.data.data
+            })
+        }).finally(() => {
+            dispatch({
+                type: CREATE_TIMED_NOTIFICATION_FINALLY
             })
         })
     }

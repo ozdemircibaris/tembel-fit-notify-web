@@ -2,12 +2,14 @@ import {
     FETCH_NOTICATIONS,
     CREATE_TIMED_NOTIFICATION_CLICK,
     CREATE_TIMED_NOTIFICATION_SUCCESS,
+    CREATE_TIMED_NOTIFICATION_FINALLY,
 
 } from "../actions/notificationAction";
 
 const INITIAL_STATE = {
     notificationValues: [],
-    spinnerValue: false
+    spinnerValue: false,
+    createNotificationFinallyValue: null
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -15,7 +17,8 @@ export default (state = INITIAL_STATE, action) => {
         case FETCH_NOTICATIONS:
             return {
                 ...state,
-                notificationValues: action.payload
+                notificationValues: action.payload,
+                createNotificationFinallyValue: null
             }
         case CREATE_TIMED_NOTIFICATION_CLICK:
             return {
@@ -26,6 +29,11 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 notificationValues: state.notificationValues.concat(action.payload)
+            }
+        case CREATE_TIMED_NOTIFICATION_FINALLY:
+            return {
+                ...state,
+                createNotificationFinallyValue: 'finally'
             }
         default:
             return state;

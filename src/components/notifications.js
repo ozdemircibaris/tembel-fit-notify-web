@@ -17,6 +17,12 @@ class Notifications extends Component {
     componentWillMount() {
         this.props.fetchNotifications()
     }
+    componentDidUpdate() {
+        const { createNotificationFinallyValue } = this.props;
+          if(createNotificationFinallyValue == "finally") {
+            this.props.fetchNotifications()
+        }
+    }
 
     onTitleValue = (e, { value }) => this.setState({ titleValue: value })
     onDescriptionValue = (e , { value }) => this.setState({ descriptionValue: value })
@@ -181,8 +187,8 @@ class Notifications extends Component {
 }
 
 const mapStateToProps = state => {
-    const { notificationValues } = state.NotificationReducer;
-    return { notificationValues }
+    const { notificationValues, createNotificationFinallyValue } = state.NotificationReducer;
+    return { notificationValues, createNotificationFinallyValue }
 }
 
 export default connect(
