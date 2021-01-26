@@ -1,0 +1,1 @@
+export const API_BASE = 'SERVER_API_BASE';
